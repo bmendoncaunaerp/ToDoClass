@@ -82,7 +82,7 @@ public class ToDoListGUI extends JFrame {
         // Populate the table with tasks from the database
         List<Task> tasks = toDoListDatabase.getTasks();
         for (Task task : tasks) {
-            tableModel.addRow(new Object[]{task.id, task.description, task.isDone});
+            tableModel.addRow(new Object[]{task.getId(), task.getDescription(), task.isDone()});
         }
     }
 

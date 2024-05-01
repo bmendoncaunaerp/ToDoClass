@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseManager.createDatabase();
+        DatabaseManager.createDatabaseTables();
 
         SwingUtilities.invokeLater(() -> {
             ToDoListGUI toDoListGUI = new ToDoListGUI();
@@ -10,3 +10,14 @@ public class Main {
         });
     }
 }
+
+/**
+ * Hibernate
+ * 1. Adicionar dependências
+ *  - hibernate.orm.core
+ *  - hibernate.orm.community.dialects
+ * 2. Ajustar classe Task (construtores, getters e setters)
+ * 3. Criar hibernate.properties
+ * 4. Ajustar DatabaseManager
+ * 5. Ajustar ToDoListDatabase
+ */

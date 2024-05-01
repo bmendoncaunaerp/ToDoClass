@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="xerial.sqlite.jdbc" level="project" />
+    <orderEntry type="library" name="hibernate.orm.core" level="project" />
+    <orderEntry type="library" name="hibernate.orm.community.dialects" level="project" />
   </component>
 </module>

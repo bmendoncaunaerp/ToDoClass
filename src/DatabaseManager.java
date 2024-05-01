@@ -1,3 +1,8 @@
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,25 +10,28 @@ import java.sql.Statement;
 
 public class DatabaseManager {
 
-    public static Connection openDatabaseConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:tasks.db");
+    private static SessionFactory sessionFactory;
+
+    public static SessionFactory getDatabaseSessionFactory() throws SQLException {
+        return sessionFactory;
     }
 
-    public static void createDatabase() {
-        // Abrir uma conexão com banco de dados
-        try(Connection connection = openDatabaseConnection();
-            Statement statement = connection.createStatement()) {
+    public static void createDatabaseTables() {
+        // A SessionFactory is set up once for an application!
+        final StandardServiceRegistry registry =
+                new StandardServiceRegistryBuilder()
+                        .build();
+        try {
+            sessionFactory = new MetadataSources(registry)
+                    .addAnnotatedClass(Task.class)
+                    .buildMetadata()
+                    .buildSessionFactory();
 
-            String sql = "CREATE TABLE IF NOT EXISTS tasks ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "description TEXT NOT NULL,"
-                    + "is_done INTEGER DEFAULT 0"
-                    + ");";
-            statement.execute(sql);
-
-
-        } catch (SQLException err) {
-            err.printStackTrace();
+        }
+        catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we
+            // had trouble building the SessionFactory so destroy it manually.
+            StandardServiceRegistryBuilder.destroy(registry);
         }
     }
 }
