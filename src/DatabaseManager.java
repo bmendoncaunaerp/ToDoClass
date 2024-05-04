@@ -12,7 +12,7 @@ public class DatabaseManager {
 
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getDatabaseSessionFactory() throws SQLException {
+    public static SessionFactory getDatabaseSessionFactory() {
         return sessionFactory;
     }
 

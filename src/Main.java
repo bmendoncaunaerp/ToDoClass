@@ -19,5 +19,5 @@ public class Main {
  * 2. Ajustar classe Task (construtores, getters e setters)
  * 3. Criar hibernate.properties
  * 4. Ajustar DatabaseManager
- * 5. Ajustar ToDoListDatabase
+ * 5. Ajustar ToDoListDatabase -> TaskDAO
  */

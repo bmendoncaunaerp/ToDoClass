@@ -8,14 +8,14 @@ import java.util.List;
 public class ToDoListGUI extends JFrame {
 
     private DefaultTableModel tableModel;
-    private final ToDoListDatabase toDoListDatabase;
+    private final TaskDAO taskDAO;
 
     public ToDoListGUI() {
         setTitle("ToDo List");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        toDoListDatabase = new ToDoListDatabase();
+        taskDAO = new TaskDAO();
 
         initializeUI();
 
@@ -65,7 +65,7 @@ public class ToDoListGUI extends JFrame {
                 int selectedRow = taskTable.getSelectedRow();
                 if (selectedRow != -1) {
                     int taskId = (int) tableModel.getValueAt(selectedRow, 0);
-                    toDoListDatabase.markTaskAsDone(taskId);
+                    taskDAO.markTaskAsDone(taskId);
                     loadTasks(); // Reload tasks after marking as done
                 } else {
                     JOptionPane.showMessageDialog(ToDoListGUI.this, "Please select a task to mark as done.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -80,7 +80,7 @@ public class ToDoListGUI extends JFrame {
         tableModel.setRowCount(0);
 
         // Populate the table with tasks from the database
-        List<Task> tasks = toDoListDatabase.getTasks();
+        List<Task> tasks = taskDAO.getTasks();
         for (Task task : tasks) {
             tableModel.addRow(new Object[]{task.getId(), task.getDescription(), task.isDone()});
         }
@@ -89,7 +89,7 @@ public class ToDoListGUI extends JFrame {
     private void addTask() {
         String description = JOptionPane.showInputDialog(this, "Enter Task Description:");
         if (description != null && !description.isEmpty()) {
-            toDoListDatabase.insertTask(description);
+            taskDAO.insertTask(description);
             loadTasks(); // Reload tasks after adding a new one
         }
     }
@@ -101,7 +101,7 @@ public class ToDoListGUI extends JFrame {
 
         String newDescription = JOptionPane.showInputDialog(this, "Enter New Task Description:", currentDescription);
         if (newDescription != null && !newDescription.isEmpty()) {
-            toDoListDatabase.editTask(taskId, newDescription, currentIsDone);
+            taskDAO.editTask(taskId, newDescription, currentIsDone);
             loadTasks(); // Reload tasks after editing
         }
     }
