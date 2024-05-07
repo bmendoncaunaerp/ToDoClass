@@ -3,11 +3,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class DatabaseManager {
 
     private static SessionFactory sessionFactory;
@@ -16,7 +11,7 @@ public class DatabaseManager {
         return sessionFactory;
     }
 
-    public static void createDatabaseTables() {
+    public static void createSessionFactory() {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry =
                 new StandardServiceRegistryBuilder()

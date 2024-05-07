@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ToDoListGUI extends JFrame {
+public class TaskView extends JFrame {
 
     private DefaultTableModel tableModel;
     private final TaskDAO taskDAO;
 
-    public ToDoListGUI() {
+    public TaskView() {
         setTitle("ToDo List");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +51,7 @@ public class ToDoListGUI extends JFrame {
                 if (selectedRow != -1) {
                     editTask(selectedRow);
                 } else {
-                    JOptionPane.showMessageDialog(ToDoListGUI.this, "Please select a task to edit.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(TaskView.this, "Please select a task to edit.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -68,7 +68,7 @@ public class ToDoListGUI extends JFrame {
                     taskDAO.markTaskAsDone(taskId);
                     loadTasks(); // Reload tasks after marking as done
                 } else {
-                    JOptionPane.showMessageDialog(ToDoListGUI.this, "Please select a task to mark as done.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(TaskView.this, "Please select a task to mark as done.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -101,7 +101,7 @@ public class ToDoListGUI extends JFrame {
 
         String newDescription = JOptionPane.showInputDialog(this, "Enter New Task Description:", currentDescription);
         if (newDescription != null && !newDescription.isEmpty()) {
-            taskDAO.editTask(taskId, newDescription, currentIsDone);
+            taskDAO.updateTask(taskId, newDescription, currentIsDone);
             loadTasks(); // Reload tasks after editing
         }
     }

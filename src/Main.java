@@ -2,11 +2,11 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseManager.createDatabaseTables();
+        DatabaseManager.createSessionFactory();
 
         SwingUtilities.invokeLater(() -> {
-            ToDoListGUI toDoListGUI = new ToDoListGUI();
-            toDoListGUI.setVisible(true);
+            TaskView taskView = new TaskView();
+            taskView.setVisible(true);
         });
     }
 }

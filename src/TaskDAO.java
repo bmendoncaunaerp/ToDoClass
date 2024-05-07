@@ -14,7 +14,7 @@ public class TaskDAO {
         }
     }
 
-    public void editTask(int taskId, String description, boolean isDone) {
+    public void updateTask(int taskId, String description, boolean isDone) {
         try {
             DatabaseManager.getDatabaseSessionFactory().inTransaction(session -> {
                 var task = session.get(Task.class, taskId);
