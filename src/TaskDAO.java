@@ -2,6 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDAO {
+    private final List<TaskListener> listeners = new ArrayList<>();
+
+    public void subscribe(TaskListener taskListener) {
+        listeners.add(taskListener);
+    }
+
+    private void notifyDataChanged() {
+        for(TaskListener listener : listeners) {
+            listener.updateData();
+        }
+    }
+
     public void insertTask(String description) {
         try {
             DatabaseManager.getDatabaseSessionFactory().inTransaction(session -> {
@@ -9,6 +21,7 @@ public class TaskDAO {
                 session.persist(task);
             });
             System.out.println("Task inserted successfully.");
+            notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error inserting task: " + e.getMessage());
         }
@@ -23,6 +36,7 @@ public class TaskDAO {
                 session.persist(task);
             });
             System.out.println("Task edited successfully.");
+            notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error editing task: " + e.getMessage());
         }
@@ -50,6 +64,7 @@ public class TaskDAO {
                 session.persist(task);
             });
             System.out.println("Task edited successfully.");
+            notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error editing task: " + e.getMessage());
         }
