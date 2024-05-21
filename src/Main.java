@@ -5,7 +5,7 @@ public class Main {
         DatabaseManager.createSessionFactory();
 
         SwingUtilities.invokeLater(() -> {
-            TaskView taskView = new TaskView();
+            TaskViewImpl taskView = new TaskViewImpl();
             taskView.setVisible(true);
         });
     }

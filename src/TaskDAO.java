@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskDAO {
+public class TaskDAO implements TaskDatabase, TaskSubscriber {
     private final List<TaskListener> listeners = new ArrayList<>();
 
+    @Override
     public void subscribe(TaskListener taskListener) {
         listeners.add(taskListener);
     }
@@ -14,6 +15,7 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public void insertTask(String description) {
         try {
             DatabaseManager.getDatabaseSessionFactory().inTransaction(session -> {
@@ -27,6 +29,7 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public void updateTask(int taskId, String description, boolean isDone) {
         try {
             DatabaseManager.getDatabaseSessionFactory().inTransaction(session -> {
@@ -42,6 +45,7 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public List<Task> getTasks() {
         List<Task> result = new ArrayList<>();
         try {
@@ -56,6 +60,7 @@ public class TaskDAO {
         return result;
     }
 
+    @Override
     public void markTaskAsDone(int taskId) {
         try {
             DatabaseManager.getDatabaseSessionFactory().inTransaction(session -> {

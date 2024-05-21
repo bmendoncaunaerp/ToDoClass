@@ -1,8 +1,8 @@
 import java.util.List;
 
-public interface TaskController {
-    void addTask(String description);
+public interface TaskDatabase {
+    void insertTask(String description);
     void updateTask(int taskId, String description, boolean isDone);
-    void setDone(int taskId);
     List<Task> getTasks();
+    void markTaskAsDone(int taskId);
 }
