@@ -1,3 +1,7 @@
+package features.task.datasource;
+
+import features.task.model.Task;
+
 import java.util.List;
 
 public interface TaskDatabase {

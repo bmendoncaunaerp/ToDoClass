@@ -1,3 +1,8 @@
+package features.task.datasource;
+
+import features.task.model.Task;
+import infrastructure.DatabaseManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +35,7 @@ public class TaskDAO implements TaskDatabase, TaskSubscriber {
                 var task = new Task(description, false);
                 session.persist(task);
             });
-            System.out.println("Task inserted successfully.");
+            System.out.println("features.task.model.Task inserted successfully.");
             notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error inserting task: " + e.getMessage());
@@ -46,7 +51,7 @@ public class TaskDAO implements TaskDatabase, TaskSubscriber {
                 task.setDone(isDone);
                 session.persist(task);
             });
-            System.out.println("Task edited successfully.");
+            System.out.println("features.task.model.Task edited successfully.");
             notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error editing task: " + e.getMessage());
@@ -76,7 +81,7 @@ public class TaskDAO implements TaskDatabase, TaskSubscriber {
                 task.setDone(true);
                 session.persist(task);
             });
-            System.out.println("Task edited successfully.");
+            System.out.println("features.task.model.Task edited successfully.");
             notifyDataChanged();
         } catch (Exception e) {
             System.out.println("Error editing task: " + e.getMessage());

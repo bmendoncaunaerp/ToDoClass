@@ -1,3 +1,13 @@
+package di;
+
+import features.task.datasource.TaskDAO;
+import features.task.datasource.TaskDatabase;
+import features.task.datasource.TaskSubscriber;
+import features.task.presentation.TaskController;
+import features.task.presentation.TaskControllerImpl;
+import features.task.presentation.TaskView;
+import features.task.presentation.TaskViewImpl;
+
 public class ServiceLocator {
 
     // Instancia para o singleton

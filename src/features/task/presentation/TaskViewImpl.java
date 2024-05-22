@@ -1,3 +1,9 @@
+package features.task.presentation;
+
+import features.task.datasource.TaskListener;
+import features.task.datasource.TaskSubscriber;
+import features.task.model.Task;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -34,7 +40,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
         add(scrollPane, BorderLayout.CENTER);
 
         // Button to add a new task
-        JButton addButton = new JButton("Add Task");
+        JButton addButton = new JButton("Add features.task.model.Task");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +50,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
         add(addButton, BorderLayout.NORTH);
 
         // Button to edit a task
-        JButton editButton = new JButton("Edit Task");
+        JButton editButton = new JButton("Edit features.task.model.Task");
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +93,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
     }
 
     private void addTask() {
-        String description = JOptionPane.showInputDialog(this, "Enter Task Description:");
+        String description = JOptionPane.showInputDialog(this, "Enter features.task.model.Task Description:");
         taskController.addTask(description);
     }
 
@@ -96,7 +102,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
         String currentDescription = (String) table.getValueAt(rowIndex, 1);
         boolean currentIsDone = (boolean) table.getValueAt(rowIndex, 2);
 
-        String newDescription = JOptionPane.showInputDialog(this, "Enter New Task Description:", currentDescription);
+        String newDescription = JOptionPane.showInputDialog(this, "Enter New features.task.model.Task Description:", currentDescription);
         taskController.updateTask(taskId, newDescription, currentIsDone);
     }
 

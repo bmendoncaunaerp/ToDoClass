@@ -1,3 +1,6 @@
+package infrastructure;
+
+import features.task.model.Task;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

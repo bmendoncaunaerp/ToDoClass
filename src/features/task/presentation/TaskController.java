@@ -1,3 +1,7 @@
+package features.task.presentation;
+
+import features.task.model.Task;
+
 import java.util.List;
 
 public interface TaskController {
