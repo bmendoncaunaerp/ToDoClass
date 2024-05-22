@@ -1,18 +1,22 @@
 import java.util.List;
 
 public class TaskControllerImpl implements TaskController {
-    private final TaskView taskView;
+    private TaskView taskView;
     private final TaskDatabase taskDatabase;
 
-    public TaskControllerImpl(TaskView taskView, TaskDAO taskDatabase) {
-        this.taskView = taskView;
+    public TaskControllerImpl(TaskDatabase taskDatabase) {
         this.taskDatabase = taskDatabase;
+    }
+
+    @Override
+    public void setView(TaskView view) {
+        this.taskView = view;
     }
 
     @Override
     public void addTask(String description) {
         if(description == null || description.isEmpty()) {
-            taskView.showErrorMessage("Descrição é obrigatório");
+            showErrorMessage("Descrição é obrigatório");
         } else {
             taskDatabase.insertTask(description);
         }
@@ -21,7 +25,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     public void updateTask(int taskId, String description, boolean isDone) {
         if(description == null || description.isEmpty()) {
-            taskView.showErrorMessage("Descrição é obrigatório");
+            showErrorMessage("Descrição é obrigatório");
         } else  {
             taskDatabase.updateTask(taskId, description, isDone);
         }
@@ -35,5 +39,11 @@ public class TaskControllerImpl implements TaskController {
     @Override
     public List<Task> getTasks() {
         return taskDatabase.getTasks();
+    }
+
+    private void showErrorMessage(String msg) {
+        if(taskView != null) {
+            taskView.showErrorMessage(msg);
+        }
     }
 }

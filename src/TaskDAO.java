@@ -2,7 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDAO implements TaskDatabase, TaskSubscriber {
-    private final List<TaskListener> listeners = new ArrayList<>();
+    private final List<TaskListener> listeners;
+
+    public TaskDAO() {
+        this(new ArrayList<>());
+    }
+
+    public TaskDAO(List<TaskListener> listeners) {
+        this.listeners = listeners;
+    }
 
     @Override
     public void subscribe(TaskListener taskListener) {

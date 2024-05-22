@@ -9,14 +9,14 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
     private DefaultTableModel table;
     private final TaskController taskController;
 
-    public TaskViewImpl() {
+    public TaskViewImpl(TaskSubscriber taskSubscriber, TaskController taskController) {
         setTitle("ToDo List");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        var taskDAO = new TaskDAO();
-        taskDAO.subscribe(this);
-        taskController = new TaskControllerImpl(this, taskDAO);
+        taskSubscriber.subscribe(this);
+        this.taskController = taskController;
+        taskController.setView(this);
 
         initializeUI();
 
@@ -98,6 +98,11 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
 
         String newDescription = JOptionPane.showInputDialog(this, "Enter New Task Description:", currentDescription);
         taskController.updateTask(taskId, newDescription, currentIsDone);
+    }
+
+    @Override
+    public void open() {
+        setVisible(true);
     }
 
     @Override

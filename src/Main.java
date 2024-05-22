@@ -5,19 +5,7 @@ public class Main {
         DatabaseManager.createSessionFactory();
 
         SwingUtilities.invokeLater(() -> {
-            TaskViewImpl taskView = new TaskViewImpl();
-            taskView.setVisible(true);
+            ServiceLocator.getInstance().getTaskView().open();
         });
     }
 }
-
-/**
- * Hibernate
- * 1. Adicionar dependências
- *  - hibernate.orm.core
- *  - hibernate.orm.community.dialects
- * 2. Ajustar classe Task (construtores, getters e setters)
- * 3. Criar hibernate.properties
- * 4. Ajustar DatabaseManager
- * 5. Ajustar ToDoListDatabase -> TaskDAO
- */
