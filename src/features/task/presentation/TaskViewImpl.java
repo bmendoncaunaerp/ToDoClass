@@ -40,7 +40,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
         add(scrollPane, BorderLayout.CENTER);
 
         // Button to add a new task
-        JButton addButton = new JButton("Add features.task.model.Task");
+        JButton addButton = new JButton("Add Task");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,7 +50,7 @@ public class TaskViewImpl extends JFrame implements TaskView, TaskListener {
         add(addButton, BorderLayout.NORTH);
 
         // Button to edit a task
-        JButton editButton = new JButton("Edit features.task.model.Task");
+        JButton editButton = new JButton("Edit Task");
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

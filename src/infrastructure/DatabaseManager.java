@@ -11,10 +11,13 @@ public class DatabaseManager {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getDatabaseSessionFactory() {
+        if(sessionFactory == null) {
+            createSessionFactory();
+        }
         return sessionFactory;
     }
 
-    public static void createSessionFactory() {
+    private static void createSessionFactory() {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry =
                 new StandardServiceRegistryBuilder()
